@@ -1,2 +1,4 @@
 # GifTastic
-Coding Bootcamp assignment week 6 
+Coding Bootcamp assignment week 6
+
+
