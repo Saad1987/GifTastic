@@ -30,6 +30,11 @@
     height: 300px;
 }
 
+.gif:hover {
+
+    cursor: pointer;
+}
+
 .card-body {
 
     background-color: black;
@@ -50,4 +55,40 @@ body {
     width: auto;
     border: beige solid 3px;
     text-align: center;
+}
+
+h5.title {
+
+     color: #ff004c;
+     font-size: 50px;
+     border: #ff004c solid 3px;
+    
+}
+
+.fav{
+
+    font-size: 40px;
+    float: right;
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    color: white;
+}
+
+.fav2 {
+
+
+    font-size: 40px;
+    float: right;
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    color: #ff004c;
+   
+}
+
+.fav:hover{
+
+    color: #ff004c;
+    cursor: pointer;
 }

@@ -47,8 +47,8 @@ function putItPage(){
         // Creating a paragraph tag with the result item's rating and title
         var p1 = $("<h5>").addClass("card-title font-weight-bold").text(favTitle[i]);
         var p2 = $("<p>").addClass("card-text").text("Rating: " + favRate[i]);
-
-        var Info = $("<div>").addClass("card-body").append(p1, p2);
+        var FavBtn = $("<span>").addClass("fav2").text("♥")
+        var Info = $("<div>").addClass("card-body").append(p1, p2,FavBtn);
 
         // Creating and storing an image tag
         var TopicImage = $("<img>").addClass("card-img-top gif");
@@ -109,8 +109,8 @@ function resetArray(Arrayy) {
                 var a = $('<a href="' + results[i].images.fixed_height.url + '" download="' + results[i].title + '">Download</a>').addClass("btn btn-info");
                 var p1 = $("<h5>").addClass("card-title font-weight-bold").text(results[i].title);
                 var p2 = $("<p>").addClass("card-text").text("Rating: " + results[i].rating);
-                FavBtn = $("<button>").addClass("btn btn-danger fav").text("favorite").attr('data-still', results[i].images.fixed_height_still.url).attr("data-animate", results[i].images.fixed_height.url);
-                FavBtn.attr("rating", results[i].rating).attr('title', results[i].title)
+                FavBtn = $("<span>").addClass("fav").text("♥").attr('data-still', results[i].images.fixed_height_still.url).attr("data-animate", results[i].images.fixed_height.url);
+                FavBtn.attr("rating", results[i].rating).attr('title', results[i].title);
                 var Info = $("<div>").addClass("card-body").append(p1, p2, a, Space, FavBtn);
 
                 // Creating and storing an image tag
@@ -131,6 +131,14 @@ function resetArray(Arrayy) {
         });
 
     }
+
+    // $( "td" ).hover(
+    //     function() {
+    //       $( this ).addClass( "hover" );
+    //     }, function() {
+    //       $( this ).removeClass( "hover" );
+    //     }
+    //   );
 
     function AddGif() {
 
@@ -244,8 +252,8 @@ function resetArray(Arrayy) {
             // Creating a paragraph tag with the result item's rating and title
             var p1 = $("<h5>").addClass("card-title font-weight-bold").text(favTitle[i]);
             var p2 = $("<p>").addClass("card-text").text("Rating: " + favRate[i]);
-
-            var Info = $("<div>").addClass("card-body").append(p1, p2);
+            var FavBtn = $("<span>").addClass("fav2").text("♥")
+            var Info = $("<div>").addClass("card-body").append(p1, p2,FavBtn);
 
             // Creating and storing an image tag
             var TopicImage = $("<img>").addClass("card-img-top gif");
