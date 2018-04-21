@@ -10,12 +10,77 @@ $(document).ready(function () {
     var y = 0;
     var Topic;
     var FavBtn;
-    var favStill = [];
-    var favAnim = [];
-    var favTitle = [];
-    var favRate = [];
+    var favStill=[];
+    var favAnim=[];
+    var favTitle=[];
+    var favRate=[];
+
+    var favStill = JSON.parse(localStorage.getItem("favStill"));
+    var favAnim = JSON.parse(localStorage.getItem("favAnim"));
+    var favTitle = JSON.parse(localStorage.getItem("favTitle"));
+    var favRate = JSON.parse(localStorage.getItem("favRate"));
+    
+    favStill = resetArray(favStill);
+    favAnim = resetArray(favAnim);
+    favTitle = resetArray(favTitle);
+    favRate = resetArray(favRate);
+
+function putItPage(){
+
+    var favStill = JSON.parse(localStorage.getItem("favStill"));
+    var favAnim = JSON.parse(localStorage.getItem("favAnim"));
+    var favTitle = JSON.parse(localStorage.getItem("favTitle"));
+    var favRate = JSON.parse(localStorage.getItem("favRate"));
+
+    favStill = resetArray(favStill);
+    favAnim = resetArray(favAnim);
+    favTitle = resetArray(favTitle);
+    favRate = resetArray(favRate);
+
+    for (var i = 0; i < favStill.length; i++) {
 
 
+        // Creating and storing a div tag
+        var DivMobile = $("<div>").addClass("float-left col-xl-3 col-lg-3 col-sm-6 col-xs-12 clearfix");
+        var TopicDiv = $("<div>").addClass("card mt-2");
+
+        // Creating a paragraph tag with the result item's rating and title
+        var p1 = $("<h5>").addClass("card-title font-weight-bold").text(favTitle[i]);
+        var p2 = $("<p>").addClass("card-text").text("Rating: " + favRate[i]);
+
+        var Info = $("<div>").addClass("card-body").append(p1, p2);
+
+        // Creating and storing an image tag
+        var TopicImage = $("<img>").addClass("card-img-top gif");
+
+        // Setting the src attribute of the image to a property pulled off the result item 
+        TopicImage.attr("src", favStill[i]).attr("data-state", "still").attr("data-animate", favAnim[i]);
+        TopicImage.attr("data-still", favStill[i]);
+
+        // Appending the paragraph and image tag to the TopicDiv
+        TopicDiv.append(TopicImage, Info);
+        DivMobile.append(TopicDiv);
+
+
+        // Prependng the DivMobile (Responsive) to the HTML page in the "#Favorite-gifs-appear-here" div
+        $("#Favorite-gifs-appear-here").append(DivMobile);
+
+        
+
+    
+}
+}
+
+
+putItPage();
+   
+function resetArray(Arrayy) {
+
+    if (!Array.isArray(Arrayy)) {
+        return [];
+      }
+      return Arrayy;
+}
 
     function displayTopicInfo() {
 
@@ -128,19 +193,45 @@ $(document).ready(function () {
         }
     }
 
+    
     function favoritGif() {
+
+         //Clearing the existant before appending other favorite gifs
+         $("#Favorite-gifs-appear-here").empty()
+
+        //loclal storage saving 
+
+    favStill = JSON.parse(localStorage.getItem("favStill"));
+    favAnim = JSON.parse(localStorage.getItem("favAnim"));
+    favTitle = JSON.parse(localStorage.getItem("favTitle"));
+    favRate = JSON.parse(localStorage.getItem("favRate"));
+
+    favStill = resetArray(favStill);
+    favAnim = resetArray(favAnim);
+    favTitle = resetArray(favTitle);
+    favRate = resetArray(favRate);
 
         still = $(this).attr("data-still");
         animate = $(this).attr("data-animate");
         title = $(this).attr("title");
         rate = $(this).attr("rating");
         favStill.push(still);
+        localStorage.setItem("favStill", JSON.stringify(favStill));
+        
         favAnim.push(animate);
+        localStorage.setItem("favAnim", JSON.stringify(favAnim));
+       
         favTitle.push(title);
+        localStorage.setItem("favTitle", JSON.stringify(favTitle));
+       
         favRate.push(rate);
+        localStorage.setItem("favRate", JSON.stringify(favRate));
 
-        //Clearing the existant before appending other favorite gifs
-        $("#Favorite-gifs-appear-here").empty()
+        favStill = JSON.parse(localStorage.getItem("favStill"));
+        favAnim = JSON.parse(localStorage.getItem("favAnim"));
+        favTitle = JSON.parse(localStorage.getItem("favTitle"));
+        favRate = JSON.parse(localStorage.getItem("favRate"));
+       
 
         //looping for all our favorite array in favStill
         for (var i = 0; i < favStill.length; i++) {
@@ -175,6 +266,7 @@ $(document).ready(function () {
 
         }
     }
+
 
     $("#add-a-Topic").on("click", function (event) {
         event.preventDefault();
