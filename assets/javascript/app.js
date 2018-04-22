@@ -37,6 +37,8 @@ function putItPage(){
     favTitle = resetArray(favTitle);
     favRate = resetArray(favRate);
 
+    $("#Favorite-gifs-appear-here").empty()
+
     for (var i = 0; i < favStill.length; i++) {
 
 
@@ -47,7 +49,7 @@ function putItPage(){
         // Creating a paragraph tag with the result item's rating and title
         var p1 = $("<h5>").addClass("card-title font-weight-bold").text(favTitle[i]);
         var p2 = $("<p>").addClass("card-text").text("Rating: " + favRate[i]);
-        var FavBtn = $("<span>").addClass("fav2").text("♥")
+        var FavBtn = $("<span>").addClass("fav2").text("♥").attr("index",i)
         var Info = $("<div>").addClass("card-body").append(p1, p2,FavBtn);
 
         // Creating and storing an image tag
@@ -73,6 +75,29 @@ function putItPage(){
 
 
 putItPage();
+
+function removeFromFav() {
+
+    var currentIndex = $(this).attr("index");
+
+    favStill = JSON.parse(localStorage.getItem("favStill"));
+    favAnim = JSON.parse(localStorage.getItem("favAnim"));
+    favTitle = JSON.parse(localStorage.getItem("favTitle"));
+    favRate = JSON.parse(localStorage.getItem("favRate"));
+
+    favStill.splice(currentIndex, 1);
+    favAnim.splice(currentIndex, 1);
+    favTitle.splice(currentIndex, 1);
+    favRate.splice(currentIndex, 1);
+
+    localStorage.setItem("favStill", JSON.stringify(favStill));
+    localStorage.setItem("favAnim", JSON.stringify(favAnim));
+    localStorage.setItem("favTitle", JSON.stringify(favTitle));
+    localStorage.setItem("favRate", JSON.stringify(favRate));
+
+    putItPage();
+
+}
    
 function resetArray(Arrayy) {
 
@@ -131,14 +156,6 @@ function resetArray(Arrayy) {
         });
 
     }
-
-    // $( "td" ).hover(
-    //     function() {
-    //       $( this ).addClass( "hover" );
-    //     }, function() {
-    //       $( this ).removeClass( "hover" );
-    //     }
-    //   );
 
     function AddGif() {
 
@@ -292,6 +309,7 @@ function resetArray(Arrayy) {
     $(document).on("click", ".Topic-btn", AddGif);
     $(document).on("click", ".gif", Animate);
     $(document).on("click", ".fav", favoritGif);
+    $(document).on("click", ".fav2", removeFromFav);
 
     // Calling the renderButtons function to display the intial buttons
     renderButtons();

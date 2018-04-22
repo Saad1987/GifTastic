@@ -65,7 +65,7 @@ h5.title {
     
 }
 
-.fav{
+.fav, .fav2:hover{
 
     font-size: 40px;
     float: right;
@@ -73,9 +73,10 @@ h5.title {
     top: 0px;
     right: 5px;
     color: white;
+    cursor: pointer;
 }
 
-.fav2 {
+.fav2, .fav:hover {
 
 
     font-size: 40px;
@@ -87,8 +88,5 @@ h5.title {
    
 }
 
-.fav:hover{
 
-    color: #ff004c;
-    cursor: pointer;
-}
+
